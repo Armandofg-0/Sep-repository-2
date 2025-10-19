@@ -1112,6 +1112,10 @@ proc create_root_design { parentCell } {
   # Create instance: state_machine_0, and set properties
   set state_machine_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:state_machine:1.0 state_machine_0 ]
 
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] [get_bd_pins /state_machine_0/clk]
+
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \

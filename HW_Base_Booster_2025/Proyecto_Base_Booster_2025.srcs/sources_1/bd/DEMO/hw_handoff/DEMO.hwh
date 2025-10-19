@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Oct 19 12:31:09 2025" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Oct 19 14:09:46 2025" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="DEMO" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -30,11 +30,11 @@
         <CONNECTION INSTANCE="axi_traffic_gen_1" PORT="s_axi_aclk"/>
         <CONNECTION INSTANCE="axi_smc_1" PORT="aclk"/>
         <CONNECTION INSTANCE="rgb_rainbow_0" PORT="s00_axi_aclk"/>
-        <CONNECTION INSTANCE="state_machine_0" PORT="clk"/>
         <CONNECTION INSTANCE="vio_2" PORT="clk"/>
         <CONNECTION INSTANCE="vio_1" PORT="clk"/>
         <CONNECTION INSTANCE="ila_0" PORT="clk"/>
         <CONNECTION INSTANCE="debouncer_0" PORT="clk"/>
+        <CONNECTION INSTANCE="state_machine_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="BTN_JY" SIGIS="undef" SIGNAME="External_Ports_BTN_JY">
@@ -5738,8 +5738,8 @@
         </PORT>
         <PORT DIR="O" NAME="debounced_pulse" SIGIS="undef" SIGNAME="debouncer_0_debounced_pulse">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="state_machine_0" PORT="btn_0"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
+            <CONNECTION INSTANCE="state_machine_0" PORT="btn_0"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -11964,10 +11964,10 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="2" FULLNAME="/state_machine_0" HWVERSION="1.0" INSTANCE="state_machine_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="state_machine" VLNV="xilinx.com:user:state_machine:1.0">
+    <MODULE COREREVISION="3" FULLNAME="/state_machine_0" HWVERSION="1.0" INSTANCE="state_machine_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="state_machine" VLNV="xilinx.com:user:state_machine:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="DEMO_state_machine_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="DEMO_state_machine_0_1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -13613,8 +13613,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="state_machine_0" PORT="finished"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe1"/>
+            <CONNECTION INSTANCE="state_machine_0" PORT="finished"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

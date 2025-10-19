@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
---Date        : Sun Oct 19 12:30:47 2025
+--Date        : Sun Oct 19 14:09:37 2025
 --Host        : DESKTOP-7OBFH0V running 64-bit major release  (build 9200)
 --Command     : generate_target DEMO.bd
 --Design      : DEMO
@@ -2715,14 +2715,6 @@ architecture STRUCTURE of DEMO is
     rgb_B : out STD_LOGIC
   );
   end component DEMO_rgb_controller_0_0;
-  component DEMO_state_machine_0_0 is
-  port (
-    clk : in STD_LOGIC;
-    btn_0 : in STD_LOGIC;
-    finished : in STD_LOGIC;
-    state : out STD_LOGIC_VECTOR ( 1 downto 0 )
-  );
-  end component DEMO_state_machine_0_0;
   component DEMO_vio_1_0 is
   port (
     clk : in STD_LOGIC;
@@ -2754,6 +2746,14 @@ architecture STRUCTURE of DEMO is
     debounced_pulse : out STD_LOGIC
   );
   end component DEMO_debouncer_0_0;
+  component DEMO_state_machine_0_1 is
+  port (
+    clk : in STD_LOGIC;
+    btn_0 : in STD_LOGIC;
+    finished : in STD_LOGIC;
+    state : out STD_LOGIC_VECTOR ( 1 downto 0 )
+  );
+  end component DEMO_state_machine_0_1;
   signal BTN0_0_1 : STD_LOGIC;
   signal BTN1_0_1 : STD_LOGIC;
   signal BTN_JY_0_1 : STD_LOGIC;
@@ -3884,7 +3884,7 @@ rst_ps7_0_50M: component DEMO_rst_ps7_0_50M_0
       peripheral_reset(0) => NLW_rst_ps7_0_50M_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK0
     );
-state_machine_0: component DEMO_state_machine_0_0
+state_machine_0: component DEMO_state_machine_0_1
      port map (
       btn_0 => debouncer_0_debounced_pulse,
       clk => clk_0_1,

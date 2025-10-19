@@ -57,9 +57,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_axi_smc_1_
 # IP: bd/DEMO/ip/DEMO_rgb_controller_0_0/DEMO_rgb_controller_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_rgb_controller_0_0 || ORIG_REF_NAME==DEMO_rgb_controller_0_0} -quiet] -quiet
 
-# IP: bd/DEMO/ip/DEMO_state_machine_0_0/DEMO_state_machine_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_state_machine_0_0 || ORIG_REF_NAME==DEMO_state_machine_0_0} -quiet] -quiet
-
 # IP: bd/DEMO/ip/DEMO_vio_1_0/DEMO_vio_1_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_vio_1_0 || ORIG_REF_NAME==DEMO_vio_1_0} -quiet] -quiet
 
@@ -74,5 +71,8 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_debouncer_
 
 # IP: bd/DEMO/ip/DEMO_auto_pc_0/DEMO_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_auto_pc_0 || ORIG_REF_NAME==DEMO_auto_pc_0} -quiet] -quiet
+
+# IP: bd/DEMO/ip/DEMO_state_machine_0_1/DEMO_state_machine_0_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==DEMO_state_machine_0_1 || ORIG_REF_NAME==DEMO_state_machine_0_1} -quiet] -quiet
 
 # XDC: bd/DEMO/DEMO_ooc.xdc

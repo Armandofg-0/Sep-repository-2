@@ -36,7 +36,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>55c2b962</spirit:value>
+            <spirit:value>2079a51c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -52,7 +52,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>55c2b962</spirit:value>
+            <spirit:value>2079a51c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -139,7 +139,7 @@
       <spirit:file>
         <spirit:name>src/state_machine.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_55c2b962</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_2079a51c</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -178,8 +178,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>state_machine_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-10-19T14:51:23Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-10-19T16:45:29Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@3e9ef122_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/Proyecto_Base_Booster/IPCores/state_machine</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2f26fb65_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/Proyecto_Base_Booster/IPCores/state_machine</xilinx:tag>
@@ -188,12 +188,23 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@56374a4f_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/Proyecto_Base_Booster/IPCores/state_machine</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@67ac5bdc_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/Proyecto_Base_Booster/IPCores/state_machine</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@e2ea81e_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/Proyecto_Base_Booster/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75a3a094_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26a558dd_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d5e1223_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12cdd566_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4857d7fe_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75f99fb2_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@570991eb_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69f6a268_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e40f982_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76ef85c1_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d37d59c_ARCHIVE_LOCATION">c:/Users/Karlsen/Sep-repository-2/IPCores/state_machine</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a88d4390"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="94ce6ebb"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c939fe4f"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="0c0ccf6d"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="32b1af3e"/>
     </xilinx:packagingInfo>
