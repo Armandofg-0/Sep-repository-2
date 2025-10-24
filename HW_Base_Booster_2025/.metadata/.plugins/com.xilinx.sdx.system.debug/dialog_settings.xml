@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="SW_Base_Booster" key="programflash.hwplatform"/>
+	<item value="C:/Users/Karlsen/Sep-repository-2/HW_Base_Booster_2025/SW_Base_Booster/_ide/bootimage/BOOT.bin" key="SW_Base_Booster-imgFile"/>
+	<item value="qspi-x4-single" key="SW_Base_Booster-flashType"/>
+	<item value="false" key="SW_Base_Booster-verifyFlash"/>
+	<item value="Auto Detect" key="SW_Base_Booster-device"/>
+	<item value="Local" key="SW_Base_Booster-target"/>
+	<item value="" key="SW_Base_Booster-offSet"/>
+	<item value="false" key="SW_Base_Booster-blankCheck"/>
+	<item value="C:/Users/Karlsen/Sep-repository-2/HW_Base_Booster_2025/HW_Base_Booster/export/HW_Base_Booster/sw/HW_Base_Booster/boot/fsbl.elf" key="SW_Base_Booster-fsblFile"/>
+</section>

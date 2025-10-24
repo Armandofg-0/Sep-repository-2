@@ -1,0 +1,7 @@
+/*HW_Base_Booster*/
+the_ROM_image:
+{
+  [bootloader]<HW_Base_Booster/boot/fsbl.elf>
+   <bitstream> 
+  <elf,ps7_cortexa9_0>
+}

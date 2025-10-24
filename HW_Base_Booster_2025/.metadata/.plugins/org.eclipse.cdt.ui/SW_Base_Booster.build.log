@@ -1,0 +1,10 @@
+08:55:04 **** Incremental Build of configuration Debug for project SW_Base_Booster ****
+make all 
+make --no-print-directory pre-build
+a9-linaro-pre-build-step
+' '
+make --no-print-directory main-build
+make[1]: Nothing to be done for 'main-build'.
+
+08:55:05 Build Finished (took 1s.220ms)
+

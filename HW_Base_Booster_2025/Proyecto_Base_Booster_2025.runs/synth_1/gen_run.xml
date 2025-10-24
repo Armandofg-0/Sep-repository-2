@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7z010clg400-1" LaunchTime="1760893793">
   <File Type="PA-TCL" Name="DEMO_wrapper.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="DEMO_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="DEMO_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="DEMO_wrapper.vds"/>
   <File Type="RDS-UTIL" Name="DEMO_wrapper_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="DEMO_wrapper_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="DEMO_wrapper.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="DEMO_wrapper_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="DEMO_wrapper_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/BUZZER.vhd">
@@ -88,13 +85,13 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="DEMO_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_traffic_gen_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_state_machine_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_quad_spi_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="DEMO_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_traffic_gen_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_BUZZER_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="DEMO_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="DEMO_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_rst_ps7_0_50M_0"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_iic_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="DEMO_axi_quad_spi_0_0"/>
