@@ -1,7 +1,0 @@
-/*Proyecto_2_HW*/
-the_ROM_image:
-{
-  [bootloader]<Proyecto_2_HW/boot/fsbl.elf>
-   <bitstream> 
-  <elf,ps7_cortexa9_0>
-}
