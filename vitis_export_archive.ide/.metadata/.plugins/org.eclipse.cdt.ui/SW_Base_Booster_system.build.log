@@ -1,0 +1,10 @@
+09:06:01 **** Incremental Build of configuration Debug for project SW_Base_Booster_system ****
+make all 
+Generating bif file for the system project
+generate_system_bif.bat 54543 C:/Users/fuent/Desktop/Intento_avance/Audioimplementado/Sep-repository-2-main/HW_Base_Booster_2025/HW_Base_Booster/export/HW_Base_Booster/HW_Base_Booster.xpfm standalone_domain C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster_system/Debug/system.bif
+sdcard_gen --xpfm C:/Users/fuent/Desktop/Intento_avance/Audioimplementado/Sep-repository-2-main/HW_Base_Booster_2025/HW_Base_Booster/export/HW_Base_Booster/HW_Base_Booster.xpfm --sys_config HW_Base_Booster --bif C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster_system/Debug/system.bif --bitstream C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster/_ide/bitstream/DEMO_wrapper.bit --elf C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster/Debug/SW_Base_Booster.elf,ps7_cortexa9_0
+creating BOOT.BIN using C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster/_ide/bitstream/DEMO_wrapper.bit
+Running C:/Xilinx/Vitis/2020.1/bin/bootgen  -image C:/Users/fuent/Desktop/Avancesemanal/vitis_export_archive.ide/SW_Base_Booster_system/Debug/sd_card_temp/boot.bif -w -o i BOOT.BIN
+
+09:06:17 Build Finished (took 15s.950ms)
+

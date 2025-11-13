@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]C:/Users/fuent/Desktop/Sep-repository-2-main/Sep-repository-2-main/HW_Base_Booster_2025/HW_Base_Booster/export/HW_Base_Booster/sw/HW_Base_Booster/boot/fsbl.elf
+	C:/Users/fuent/Desktop/Sep-repository-2-main/Sep-repository-2-main/HW_Base_Booster_2025/SW_Base_Booster/Debug/SW_Base_Booster.elf
+	C:\Users\fuent\Desktop\Sep-repository-2-main\Sep-repository-2-main\HW_Base_Booster_2025\HW_Base_Booster\bitstream\DEMO_wrapper.bit
+}

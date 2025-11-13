@@ -1,0 +1,236 @@
+#include <stdio.h>
+#include <sleep.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "platform.h"
+#include "xil_printf.h"
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xstatus.h"
+#include "Delay.h"
+#include "LCD_SPI.h"
+#include "LCD_Driver.h"
+#include "LCD_GUI.h"
+#include "ADC.h"
+#include "I2C.h"
+
+// Audio system headers
+#include "xscugic.h"
+#include "xtmrctr.h"
+#include "sound.h"
+#include "melody.h"
+
+// ==================== External Definitions ====================
+extern XGpio gpio0;
+extern XSpi  SpiInstance;
+extern XSpi  SpiInstance1;
+extern const unsigned char font[];
+
+// Audio device IDs and interrupt IDs
+#define TIMER_DEVICE_ID_SOUND    XPAR_AXI_TIMER_0_DEVICE_ID
+#define TIMER_INTR_ID_SOUND      XPAR_FABRIC_AXI_TIMER_0_INTERRUPT_INTR
+#define TIMER_DEVICE_ID_GRAPHICS XPAR_AXI_TIMER_1_DEVICE_ID
+#define TIMER_INTR_ID_GRAPHICS   XPAR_FABRIC_AXI_TIMER_1_INTERRUPT_INTR
+#define INTC_DEVICE_ID           XPAR_SCUGIC_SINGLE_DEVICE_ID
+
+// Timer instances
+XTmrCtr TimerInstance;          // Para el audio
+XTmrCtr TimerInstanceGraphics;  // Para los gráficos
+XScuGic InterruptController;
+
+// External melody variables (from sound.c)
+extern Note melody[];
+extern int melody_length;
+
+// Function prototypes
+void Graphics_Timer_Interrupt_Handler(void *CallBackRef);
+extern volatile int graphics_update_needed;
+
+// ==================== LCD and Sensor Config ====================
+#define BACKGROUND  WHITE
+#define FOREGROUND  BLUE
+#define DELAY       1000
+
+// ==================== MAIN ====================
+int main() {
+    int Status;
+
+    // Initialize UART/platform
+    init_platform();
+    xil_printf("System initialization started...\r\n");
+
+    // -------------------- GPIO --------------------
+    Status = XGpio_Initialize(&gpio0, XPAR_AXI_GPIO_0_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Gpio 0 Initialization Failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // -------------------- SPI (LCD) --------------------
+    Status = XSpi_Init(&SpiInstance, SPI_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
+        xil_printf("SPI Mode Failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // -------------------- SPI (ADC) --------------------
+    Status = init_adc(&SpiInstance1, SPI_DEVICE_ID_1);
+    if (Status != XST_SUCCESS) {
+        xil_printf("SPI-ADC Mode Failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // -------------------- I2C --------------------
+    Status = init_IIC();
+    if (Status != XST_SUCCESS) {
+        xil_printf("IIC Mode Failed\r\n");
+        return XST_FAILURE;
+    }
+
+    // -------------------- LCD --------------------
+    xil_printf("Initializing LCD...\r\n");
+    LCD_SCAN_DIR LCD_ScanDir = SCAN_DIR_DFT;
+    LCD_Init(LCD_ScanDir);
+    LCD_Clear(GUI_BACKGROUND);
+    GUI_INTRO();
+    delay_ms(500);
+    LCD_Clear(GUI_BACKGROUND);
+
+    xil_printf("LCD Ready\r\n");
+
+    // -------------------- AUDIO INITIALIZATION --------------------
+    xil_printf("Initializing Audio System...\r\n");
+
+    // Inicialización del interrupt controller.
+    XScuGic_Config *IntcConfig;
+    IntcConfig = XScuGic_LookupConfig(INTC_DEVICE_ID);
+    if (NULL == IntcConfig) {
+        xil_printf("Error al obtener la configuración del interrupt controller \r\n");
+        return XST_FAILURE;
+    }
+
+    Status = XScuGic_CfgInitialize(&InterruptController, IntcConfig,
+                                   IntcConfig->CpuBaseAddress);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to initialize interrupt controller\r\n");
+        return XST_FAILURE;
+    }
+
+    // Initialize exception handling
+    Xil_ExceptionInit();// Inicializacion del sistema de excepciones del procesador
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+                                (Xil_ExceptionHandler)XScuGic_InterruptHandler,
+                                &InterruptController); // ID de interrupciones IRQ, Función de manejo de interrupciones
+    Xil_ExceptionEnable(); // Habilita las interrupciones del zynq
+
+    // Inicialización del timer asociado a las interrupciones de audio.
+    Status = Sound_Initialize_Timer(TIMER_DEVICE_ID_SOUND);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Error en inicializar el sound timer\r\n");
+        return XST_FAILURE;
+    }
+
+    // Initialize the graphics timer
+    Status = XTmrCtr_Initialize(&TimerInstanceGraphics, TIMER_DEVICE_ID_GRAPHICS);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to initialize graphics timer\r\n");
+        return XST_FAILURE;
+    }
+
+    // Configure graphics timer options
+    XTmrCtr_SetOptions(&TimerInstanceGraphics, 0,
+                       XTC_DOWN_COUNT_OPTION | XTC_INT_MODE_OPTION | XTC_AUTO_RELOAD_OPTION);
+
+    // Set graphics timer period (e.g., 50ms for 20Hz refresh)
+    XTmrCtr_SetResetValue(&TimerInstanceGraphics, 0, 5000000);
+
+    // Hacemos el setupt del interrup del sonido:
+    Status = Sound_Setup_Interrupt_System(&InterruptController);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Error al configurar el sound interrupts\r\n");
+        return XST_FAILURE;
+    }
+
+    // Set up graphics timer interrupt
+    Status = XScuGic_Connect(&InterruptController, TIMER_INTR_ID_GRAPHICS,
+                            (Xil_InterruptHandler)Graphics_Timer_Interrupt_Handler,
+                            (void *)&TimerInstanceGraphics);
+    if (Status != XST_SUCCESS) {
+        xil_printf("Failed to connect graphics timer interrupt\r\n");
+        return XST_FAILURE;
+    }
+
+    // Enable graphics timer interrupt in the controller
+    XScuGic_Enable(&InterruptController, TIMER_INTR_ID_GRAPHICS);
+
+    // Start both timers
+    XTmrCtr_Start(&TimerInstanceGraphics, 0);
+    XTmrCtr_Start(&TimerInstance, 0);
+
+    xil_printf("Audio and Graphics System Initialized. Preparing to play melody...\r\n");
+
+    // Inicializamos la estructura de la melodía
+    initialize_melody(available_melodies[1], melody, &melody_length);
+
+    // Reproducimos la nota:
+    current_note = 0;
+    Play_Next_Note();
+
+    xil_printf("Melody playback started...\r\n");
+
+    // -------------------- SENSOR + DISPLAY LOOP --------------------
+    char joyx[16] = {}, joyy[16] = {}, acx[16] = {}, acy[16] = {};
+    char tmp[16] = {}, opt[16] = {}, pot1[16] = {}, pot2[16] = {}, mic[16] = {};
+
+    while (1) {
+        // Clear old values
+        GUI_DisString_EN(5,30,joyx,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(5,65,joyy,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(50,30,tmp,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(50,65,opt,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(95,30,pot1,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(95,65,pot2,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(5,100,acx,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(50,100,acy,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+        GUI_DisString_EN(95,100,mic,&Font12,GUI_BACKGROUND,GUI_BACKGROUND);
+
+        // Read sensors
+        sprintf(joyx, "%d", read_joyx());
+        sprintf(joyy, "%d", read_joyy());
+        sprintf(tmp, "%d", read_tmp());
+        sprintf(opt, "%d", read_opt());
+        sprintf(pot1, "%d", read_POT1());
+        sprintf(pot2, "%d", read_POT2());
+        sprintf(acx, "%d", read_acx());
+        sprintf(acy, "%d", read_acy());
+        sprintf(mic, "%d", read_MIC());
+
+
+        // Print via UART
+        xil_printf("JX:%d JY:%d ACX:%d ACY:%d MIC:%d POT1:%d POT2:%d TMP:%d LUZ:%d\r\n",
+                   read_joyx(), read_joyy(), read_acx(), read_acy(),
+                   read_MIC(), read_POT1(), read_POT2(), read_tmp(), read_opt());
+
+        delay_ms(20);
+    }
+
+    cleanup_platform();
+    return 0;
+}
+
+// Variable global para control de actualización de gráficos
+volatile int graphics_update_needed = 0;
+
+// Graphics Timer Interrupt Handler
+void Graphics_Timer_Interrupt_Handler(void *CallBackRef)
+{
+    XTmrCtr *InstancePtr = (XTmrCtr *)CallBackRef;
+
+    // Clear the interrupt
+    u32 ControlStatusReg = XTmrCtr_GetControlStatusReg(InstancePtr->BaseAddress, 0);
+    XTmrCtr_SetControlStatusReg(InstancePtr->BaseAddress, 0, ControlStatusReg);
+
+    // Set the flag to indicate that graphics update is needed
+    graphics_update_needed = 1;
+}

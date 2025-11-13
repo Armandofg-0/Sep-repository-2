@@ -1,0 +1,31 @@
+vhdl xil_defaultlib  \
+"../../../bd/DEMO/ip/DEMO_axi_quad_spi_0_0/sim/DEMO_axi_quad_spi_0_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_gpio_0_0/sim/DEMO_axi_gpio_0_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_rst_ps7_0_50M_0/sim/DEMO_rst_ps7_0_50M_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_quad_spi_1_0/sim/DEMO_axi_quad_spi_1_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_iic_0_1/sim/DEMO_axi_iic_0_1.vhd" \
+"../../../bd/DEMO/ip/DEMO_vio_0_0/sim/DEMO_vio_0_0.vhd" \
+"../../../bd/DEMO/ipshared/25d7/hdl/rgb_rainbow_v1_0_S00_AXI.vhd" \
+"../../../bd/DEMO/ipshared/25d7/hdl/rgb_rainbow_v1_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_rgb_rainbow_0_3/sim/DEMO_rgb_rainbow_0_3.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_smc_4/bd_0/ip/ip_1/sim/bd_2e8b_psr_aclk_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_rst_clk_125M_2/sim/DEMO_rst_clk_125M_2.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_smc_1_3/bd_0/ip/ip_1/sim/bd_088f_psr_aclk_0.vhd" \
+"../../../bd/DEMO/ipshared/4056/src/rgb_controller.vhd" \
+"../../../bd/DEMO/ip/DEMO_rgb_controller_0_0/sim/DEMO_rgb_controller_0_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_vio_1_0/sim/DEMO_vio_1_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_vio_2_0/sim/DEMO_vio_2_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_ila_0_0/sim/DEMO_ila_0_0.vhd" \
+"../../../bd/DEMO/ipshared/84ec/Debouncer.vhd" \
+"../../../bd/DEMO/ip/DEMO_debouncer_0_0/sim/DEMO_debouncer_0_0.vhd" \
+"../../../bd/DEMO/ipshared/f1fe/src/state_machine.vhd" \
+"../../../bd/DEMO/ip/DEMO_state_machine_0_1/sim/DEMO_state_machine_0_1.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_timer_0_0/sim/DEMO_axi_timer_0_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_timer_1_0/sim/DEMO_axi_timer_1_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_axi_gpio_1_0/sim/DEMO_axi_gpio_1_0.vhd" \
+"../../../bd/DEMO/ipshared/fd3b/src/BuzzerBooster_Driver_v1_0_S00_AXI.vhd" \
+"../../../bd/DEMO/ipshared/fd3b/src/BuzzerBooster_Driver_v1_0.vhd" \
+"../../../bd/DEMO/ip/DEMO_BuzzerBooster_Driver_0_1/sim/DEMO_BuzzerBooster_Driver_0_1.vhd" \
+"../../../bd/DEMO/sim/DEMO.vhd" \
+
+nosort
